@@ -1,0 +1,7 @@
+.venv/
+results/
+ppt/
+*.pptx
+*.zip
+.DS_Store
+.vscode/
