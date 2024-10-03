@@ -65,8 +65,10 @@ def transcribe(audio_file_paths, result_subdir, pptx_file_name):
         with sr.AudioFile(wav_file) as source:
             audio_data = r.record(source)
             text = r.recognize_google(audio_data)
-            with open(f"{result_subdir}/{output_file_prefix}{f_name}.txt", 'w') as out_file:
-                to_notes(text, pptx_file_path, slide_num - 1)
+            if text:
+                with open(f"{result_subdir}/{output_file_prefix}{f_name}.txt", 'w') as out_file:
+                    # to_notes(text, pptx_file_path, slide_num - 1)     # write the transcript to the speaker notes
+                    out_file.write(text)    # write the transcript to a separate txt
         processing_count += 1
 
 def to_notes(note, pptx_fname, slide_num):
@@ -101,7 +103,7 @@ def main():
     shutil.copy(file, result_subdir)
     transcribe(sorted_audio_files, result_subdir, file)
     
-    shutil.rmtree(media_dir)
+    shutil.rmtree(ppt_dir)
 
 if __name__ == "__main__":
     main()
