@@ -9,6 +9,7 @@ audio_extensions = ('.aiff', '.au', '.mid', '.midi', '.mp3', '.m4a', '.mp4', '.w
 init_dir = os.getcwd()
 init_files = os.listdir()
 results_dir =  "../results"
+joinall_path = results_dir + "/joinall.py"
 ppt_dir = init_dir + '/ppt'
 media_dir = ppt_dir + '/media'
 output_file_prefix = "converted_"
@@ -104,6 +105,8 @@ def main():
     transcribe(sorted_audio_files, result_subdir, file)
     
     shutil.rmtree(ppt_dir)
+
+    shutil.copy(joinall_path, result_subdir)
 
 if __name__ == "__main__":
     main()

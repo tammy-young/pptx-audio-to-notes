@@ -1,5 +1,5 @@
 .venv/
-results/
+results/*/
 ppt/
 *.pptx
 *.zip
