@@ -3,6 +3,7 @@ from pydub import AudioSegment
 import speech_recognition as sr
 from pptx import Presentation
 from pathlib import Path
+from tqdm import tqdm
 
 
 audio_extensions = ('.aiff', '.au', '.mid', '.midi', '.mp3', '.m4a', '.mp4', '.wav', '.wma')
@@ -58,10 +59,10 @@ def transcribe(audio_file_paths, result_subdir, pptx_file_name):
     total_num = len(audio_file_paths)
     processing_count = 1
     pptx_file_path = f"{result_subdir}/{pptx_file_name}"
-    for f in audio_file_paths:
+    for f in tqdm(audio_file_paths):
         f_name = f.split("/")[-1].split(".")[0]
         slide_num = int(f_name.split('media')[1])
-        print(f"Processing {processing_count}/{total_num}...")
+        # print(f"Processing {processing_count}/{total_num}...")
         wav_file = prepare_voice_file(f)
         with sr.AudioFile(wav_file) as source:
             audio_data = r.record(source)
