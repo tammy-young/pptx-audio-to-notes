@@ -20,12 +20,12 @@ def main():
     with open(f'{combined_file}/joined.txt', 'w') as out:
         slide_num = 1
         for t in all_text:
+            while slide_num in skip:
+                slide_num += 1
             out.write(f'{slide_num}.\n')
             out.write(t)
             out.write('\n\n')
             slide_num += 1
-            while slide_num in skip:
-                slide_num += 1
 
 
 if __name__ == '__main__':
